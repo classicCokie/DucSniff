@@ -49,7 +49,7 @@ namespace DucSniff
             _communicator.ReceivePackets(0, PacketHandler);
         }
 
-        public void SetTargetData(string target1, string target2)
+        public void SetTargetData(string target1, string target2) // Setup all Data before getting started
         {
             _target1Mac = target1.Substring(5, 17);
             _target1Ip = target1.Substring(27, target1.Length - 27);
@@ -77,7 +77,7 @@ namespace DucSniff
                         }
         }
 
-        private void OptainIpRange()
+        private void OptainIpRange() // Get the Ip Range Of you Machine
         {
             for (int i = _ipAdress.Length - 1; i > 0; i--)
                 if (_ipAdress[i] == '.')
@@ -87,8 +87,9 @@ namespace DucSniff
                 }
         }
 
-        private void OptainMacAdress()
+        private void OptainMacAdress() // Get the macAdress of the Local Machine and Sanitze it
         {
+            
             foreach (NetworkInterface nic in NetworkInterface.GetAllNetworkInterfaces())
             {
                 if (nic.NetworkInterfaceType != NetworkInterfaceType.Ethernet) continue;
@@ -111,7 +112,7 @@ namespace DucSniff
                 }
         }
 
-        private static List<byte> MacAdressToByte(string macAdress)
+        private static List<byte> MacAdressToByte(string macAdress) // Make macAdres to Byte List for Arp packet Contructor
         {
             List<byte> byteAdress = new List<byte>();
 
@@ -124,7 +125,7 @@ namespace DucSniff
             return byteAdress;
         }
 
-        private static List<byte> IpAdressToByte(string ipAdress)
+        private static List<byte> IpAdressToByte(string ipAdress) // Make Ip Adress to Byte List for Arp packet Contructor
         {
             List<byte> byteAdress = new List<byte>();
 
@@ -143,7 +144,7 @@ namespace DucSniff
         }
 
 
-        public void SendArpSpoof()
+        public void SendArpSpoof() //start sending out the fake Arp Packages and start listening for Packages
         {
             _communicator = _selectedDevice.Open(65536, PacketDeviceOpenAttributes.Promiscuous, 1000);
 
@@ -153,7 +154,7 @@ namespace DucSniff
             proxy.Start();
         }
 
-        private void ArpSender()
+        private void ArpSender() //keep Sending Packages to keep the targets Poisoned
         {
             while (true)
             {
@@ -167,25 +168,26 @@ namespace DucSniff
             ;
         }
 
-        public void StopListening()
+        public void StopListening() //Stop Listening and Sending Arp Packages
         {
             _dumper.WriteToFile();
             _communicator.Break();
         }
 
 
-        private void PacketHandler(Packet packet)
+        private void PacketHandler(Packet packet) //Handle the Incoming Packages
         {
             IpV4Datagram ip = packet.Ethernet.IpV4;
-            UdpDatagram udp = ip.Udp;
+            
 
 
-            if (Convert.ToString(ip.Source) == _target1Ip || Convert.ToString(ip.Source) == _target2Ip)
+            if (Convert.ToString(ip.Source) == _target1Ip || Convert.ToString(ip.Source) == _target2Ip) // Check if the ip is from the Correct source
             {
                 MacAddress newMacAdress;
                 Console.WriteLine(ip.Source + " ---> " + ip.Destination);
-
+                //pass the Packet to the Dumper which writes it to file.
                 _dumper.AddData(packet);
+                //Check which kind of Protocoll the Package is and then copy it, switch Macadress and then forward it
                 if (_target1Ip == Convert.ToString(ip.Destination))
                     newMacAdress = new MacAddress(_target1Mac);
                 else

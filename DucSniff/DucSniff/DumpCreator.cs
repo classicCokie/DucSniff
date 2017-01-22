@@ -15,7 +15,7 @@ namespace DucSniff
         {
             _allData.Add(CreateStringFromPacket(p));
         }
-
+        //Write the recieved package to File.
         public void WriteToFile()
         {
             string path = Directory.GetCurrentDirectory();
@@ -24,7 +24,7 @@ namespace DucSniff
             MessageBox.Show("All Captured Packages saved to: " + path);
            
         }
-
+        //make nice String out of Packages
         private string CreateStringFromPacket(Packet p)
         {
             string stringPacket = "Time: " + Convert.ToString(p.Timestamp) + " Source: " +

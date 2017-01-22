@@ -8,16 +8,17 @@ namespace DucSniff
 {
     public class NetworkScanner
     {
+        
         private static readonly List<string> HostList = new List<string>();
         private static string _ipRange;
         private int _counter = 1;
 
-
+        //Set Ip Range
         public NetworkScanner(string ipRange)
         {
             _ipRange = ipRange;
         }
-
+        //Spawn Multiple Threads which all send out a arp request to see which machines are up in the network
         public void start_scanning()
         {
             _counter = 1;
@@ -42,7 +43,7 @@ namespace DucSniff
         {
             HostList.Clear();
         }
-
+        //Sending and Reeciving the Arps
         [DllImport("iphlpapi.dll", ExactSpelling = true)]
         public static extern int SendARP(uint destIp, uint srcIp, byte[] pMacAddr, ref int phyAddrLen);
 

@@ -7,6 +7,7 @@ using PcapDotNet.Packets.Transport;
 
 namespace DucSniff
 {
+    //Copy all Data From the incoming package execpt for the New Destination MacAdress on the Ethernet layer
     internal class HttpPacket
     {
         //HTTP PACKET BUILDER
