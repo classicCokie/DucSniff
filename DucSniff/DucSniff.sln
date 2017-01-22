@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DucSniff", "DucSniff\DucSniff.csproj", "{CF094C24-65AE-4B89-9BC0-D0ED851AC58C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SniffTests", "..\SniffTests\SniffTests\SniffTests.csproj", "{BE02F1D0-2319-4A3D-8241-A4EAD933DAAB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CF094C24-65AE-4B89-9BC0-D0ED851AC58C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF094C24-65AE-4B89-9BC0-D0ED851AC58C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF094C24-65AE-4B89-9BC0-D0ED851AC58C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF094C24-65AE-4B89-9BC0-D0ED851AC58C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE02F1D0-2319-4A3D-8241-A4EAD933DAAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE02F1D0-2319-4A3D-8241-A4EAD933DAAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE02F1D0-2319-4A3D-8241-A4EAD933DAAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE02F1D0-2319-4A3D-8241-A4EAD933DAAB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
